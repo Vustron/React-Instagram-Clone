@@ -161,6 +161,7 @@ const ProfilePost = ({ post }) => {
 									)}
 								</Flex>
 								<Divider my={4} bg={'grey.500'} />
+
 								<VStack
 									w={'full'}
 									alignItems={'start'}
@@ -171,6 +172,7 @@ const ProfilePost = ({ post }) => {
 										<Comment key={comment.id} comment={comment} />
 									))}
 								</VStack>
+
 								<Divider my={4} bg={'gray.8000'} />
 								<PostFooter isProfilePage={true} post={post} />
 							</Flex>

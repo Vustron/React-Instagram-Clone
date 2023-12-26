@@ -25,7 +25,7 @@ const ProfilePosts = () => {
 			{!isLoading && (
 				<>
 					{posts.map((post) => (
-						<ProfilePost post={post} key={post.id} />
+						<ProfilePost key={post.id} post={post} />
 					))}
 				</>
 			)}
