@@ -5,9 +5,12 @@ import {
 	NotificationsLogo,
 	UnlikeLogo,
 } from '../../assets/constants';
+import usePostComment from '../../hooks/usePostComment';
+import useAuthStore from '../../store/authStore';
 
 // post footer
-const PostFooter = ({ username, isProfilePage }) => {
+const PostFooter = ({ post, username, isProfilePage }) => {
+	const authUser = useAuthStore((state) => state.user);
 	// liked
 	const [liked, setLiked] = useState(false);
 	// Likes
@@ -23,98 +26,83 @@ const PostFooter = ({ username, isProfilePage }) => {
 		}
 	};
 
+	const { isCommenting, handlePostComment } = usePostComment();
+	const [comment, setComment] = useState('');
+
+	const handleSubmitComment = async () => {
+		await handlePostComment(post.id, comment);
+		setComment('');
+	};
+
 	return (
-		<Box
-			mb={10}
-			marginTop={'auto'}
-		>
-			<Flex
-				alignItems={'center'}
-				gap={4}
-				w={'full'}
-				pt={0}
-				mb={2}
-				mt={4}
-			>
+		<Box mb={10} marginTop={'auto'}>
+			<Flex alignItems={'center'} gap={4} w={'full'} pt={0} mb={2} mt={4}>
 				{/* like button */}
-				<Box
-					onClick={handleLike}
-					cursor={'pointer'}
-					fontSize={18}
-				>
+				<Box onClick={handleLike} cursor={'pointer'} fontSize={18}>
 					{!liked ? <NotificationsLogo /> : <UnlikeLogo />}
 				</Box>
 
 				{/* comments */}
-				<Box
-					cursor={'pointer'}
-					fontSize={18}
-				>
+				<Box cursor={'pointer'} fontSize={18}>
 					<CommentLogo />
 				</Box>
 			</Flex>
 
 			{/* no. of likes */}
-			<Text
-				fontWeight={600}
-				fontSize={'sm'}
-			>
+			<Text fontWeight={600} fontSize={'sm'}>
 				{likes} likes
 			</Text>
 
 			{!isProfilePage && (
 				<>
 					{/* user */}
-					<Text
-						fontSize={'sm'}
-						fontWeight={700}
-					>
+					<Text fontSize={'sm'} fontWeight={700}>
 						{username}{' '}
-						<Text
-							as={'span'}
-							fontWeight={400}
-						>
+						<Text as={'span'} fontWeight={400}>
 							Feeling Good
 						</Text>
 					</Text>
 
 					{/* view all comments */}
-					<Text
-						fontSize={'sm'}
-						color={'gray'}
-					>
+					<Text fontSize={'sm'} color={'gray'}>
 						View all 1,000 comments
 					</Text>
 				</>
 			)}
 
 			{/* comment */}
-			<Flex
-				alignItems={'center'}
-				gap={2}
-				justifyContent={'space-between'}
-				w={'full'}
-			>
-				<InputGroup>
-					<Input
-						variant={'flushed'}
-						placeholder={'Add a commment...'}
-						fontSize={14}
-					/>
-					<Button
-						fontSize={14}
-						color={'blue.500'}
-						fontWeight={600}
-						cursor={'pointer'}
-						_hover={{
-							color: 'white',
-						}}
-						bg={'transparent'}
-					>
-						Post
-					</Button>
-				</InputGroup>
-			</Flex>
+			{authUser && (
+				<Flex
+					alignItems={'center'}
+					gap={2}
+					justifyContent={'space-between'}
+					w={'full'}
+				>
+					<InputGroup>
+						<Input
+							variant={'flushed'}
+							placeholder={'Add a commment...'}
+							fontSize={14}
+							onChange={(e) => setComment(e.target.value)}
+							value={comment}
+						/>
+						<Button
+							fontSize={14}
+							color={'blue.500'}
+							fontWeight={600}
+							cursor={'pointer'}
+							_hover={{
+								color: 'white',
+							}}
+							bg={'transparent'}
+							onClick={handleSubmitComment}
+							isLoading={isCommenting}
+						>
+							Post
+						</Button>
+					</InputGroup>
+				</Flex>
+			)}
 		</Box>
 	);
 };
