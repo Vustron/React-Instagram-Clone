@@ -21,12 +21,26 @@ import Comment from '../Comment/Comment';
 import PostFooter from '../FeedPosts/PostFooter';
 import useUserProfileStore from '../../store/userProfileStore';
 import useAuthStore from '../../store/authStore';
+import useShowToast from '../../hooks/useShowToast';
+import useDeletePost from '../../hooks/useDeletePost';
 
 const ProfilePost = ({ post }) => {
 	// init modal
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const userProfile = useUserProfileStore((state) => state.userProfile);
 	const authUser = useAuthStore((state) => state.user);
+	const { isDeleting, handleDeletePost } = useDeletePost();
+	const showToast = useShowToast();
+
+	const handleDeletingPost = async () => {
+		if (!window.confirm('Are you sure you want to delete this post?')) return;
+		try {
+			await handleDeletePost(post);
+		} catch (error) {
+			console.log(error);
+			showToast('Error', error.message, 'error');
+		}
+	};
 
 	return (
 		<>
@@ -139,6 +153,8 @@ const ProfilePost = ({ post }) => {
 											}}
 											borderRadius={4}
 											p={1}
+											onClick={handleDeletingPost}
+											isLoading={isDeleting}
 										>
 											<MdDelete size={20} cursor={'pointer'} />
 										</Button>
