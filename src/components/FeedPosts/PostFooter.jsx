@@ -7,24 +7,12 @@ import {
 } from '../../assets/constants';
 import usePostComment from '../../hooks/usePostComment';
 import useAuthStore from '../../store/authStore';
+import useLikePost from '../../hooks/useLikePost';
 
 // post footer
 const PostFooter = ({ post, username, isProfilePage }) => {
 	const authUser = useAuthStore((state) => state.user);
-	// liked
-	const [liked, setLiked] = useState(false);
-	// Likes
-	const [likes, setLikes] = useState(1000);
-	// like handler
-	const handleLike = () => {
-		if (liked) {
-			setLiked(false);
-			setLikes(likes - 1);
-		} else {
-			setLiked(true);
-			setLikes(likes + 1);
-		}
-	};
+	const { handleLikePost, isLiked, isLiking, likes } = useLikePost(post);
 
 	const { isCommenting, handlePostComment } = usePostComment();
 	const [comment, setComment] = useState('');
@@ -40,9 +28,15 @@ const PostFooter = ({ post, username, isProfilePage }) => {
 		<Box mb={10} marginTop={'auto'}>
 			<Flex alignItems={'center'} gap={4} w={'full'} pt={0} mb={2} mt={4}>
 				{/* like button */}
-				<Box onClick={handleLike} cursor={'pointer'} fontSize={18}>
-					{!liked ? <NotificationsLogo /> : <UnlikeLogo />}
-				</Box>
+				<Button
+					onClick={handleLikePost}
+					cursor={'pointer'}
+					fontSize={18}
+					isLoading={isLiking}
+					bg={'transparent'}
+				>
+					{!isLiked ? <NotificationsLogo /> : <UnlikeLogo />}
+				</Button>
 
 				{/* comments */}
 				<Box
