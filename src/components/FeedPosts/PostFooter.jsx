@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Input, InputGroup, Text } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {
 	CommentLogo,
 	NotificationsLogo,
@@ -34,6 +34,8 @@ const PostFooter = ({ post, username, isProfilePage }) => {
 		setComment('');
 	};
 
+	const commentRef = useRef(null);
+
 	return (
 		<Box mb={10} marginTop={'auto'}>
 			<Flex alignItems={'center'} gap={4} w={'full'} pt={0} mb={2} mt={4}>
@@ -43,7 +45,11 @@ const PostFooter = ({ post, username, isProfilePage }) => {
 				</Box>
 
 				{/* comments */}
-				<Box cursor={'pointer'} fontSize={18}>
+				<Box
+					cursor={'pointer'}
+					fontSize={18}
+					onClick={() => commentRef.current.focus()}
+				>
 					<CommentLogo />
 				</Box>
 			</Flex>
@@ -85,6 +91,7 @@ const PostFooter = ({ post, username, isProfilePage }) => {
 							fontSize={14}
 							onChange={(e) => setComment(e.target.value)}
 							value={comment}
+							ref={commentRef}
 						/>
 						<Button
 							fontSize={14}

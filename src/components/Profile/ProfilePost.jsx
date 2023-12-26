@@ -23,6 +23,7 @@ import useUserProfileStore from '../../store/userProfileStore';
 import useAuthStore from '../../store/authStore';
 import useShowToast from '../../hooks/useShowToast';
 import useDeletePost from '../../hooks/useDeletePost';
+import Caption from '../Comment/Caption';
 
 const ProfilePost = ({ post }) => {
 	// init modal
@@ -168,6 +169,9 @@ const ProfilePost = ({ post }) => {
 									maxH={'350px'}
 									overflowY={'auto'}
 								>
+									{/* captions */}
+									{post.caption && <Caption post={post} />}
+									{/* comments */}
 									{post.comments.map((comment) => (
 										<Comment key={comment.id} comment={comment} />
 									))}

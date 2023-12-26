@@ -24,6 +24,7 @@ const ProfilePosts = () => {
 
 			{!isLoading && (
 				<>
+					{/* profile posts */}
 					{posts.map((post) => (
 						<ProfilePost key={post.id} post={post} />
 					))}
