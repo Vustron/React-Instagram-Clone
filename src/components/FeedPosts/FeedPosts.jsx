@@ -2,29 +2,23 @@ import {
 	Box,
 	Container,
 	Flex,
+	Image,
 	Skeleton,
 	SkeletonCircle,
+	Text,
 	VStack,
 } from '@chakra-ui/react';
 import FeedPost from './FeedPost';
-import { useEffect, useState } from 'react';
+import useGetFeedPosts from '../../hooks/useGetFeedPosts';
 
 // FeedPosts
 const FeedPosts = () => {
-	// loading data
-	const [isLoading, setIsLoading] = useState(true);
-
-	useEffect(() => {
-		setTimeout(() => {
-			setIsLoading(false);
-		}, 2000);
-	}, []);
-
+	const { isFetching, posts } = useGetFeedPosts();
 	return (
 		<Container maxW={'container.sm'} py={10} px={2}>
 			{/* Skeleton placeholder */}
-			{isLoading &&
-				[0, 1, 2, 3].map((_, index) => (
+			{isFetching &&
+				[0, 1, 2].map((_, index) => (
 					<VStack key={index} gap={4} alignItems={'flex-start'} mb={10}>
 						<Flex gap={2}>
 							<SkeletonCircle size={10} />
@@ -34,18 +28,26 @@ const FeedPosts = () => {
 							</VStack>
 						</Flex>
 						<Skeleton w={'full'}>
-							<Box h={'500px'}>contents wrapped</Box>
+							<Box h={'400px'}>contents wrapped</Box>
 						</Skeleton>
 					</VStack>
 				))}
 
-			{!isLoading && (
+			{!isFetching &&
+				posts.length > 0 &&
+				posts.map((post) => <FeedPost key={post.id} post={post} />)}
+			{!isFetching && posts.length === 0 && (
 				<>
-					{/* User posts */}
-					<FeedPost img='img1.png' username='burakorkmezz' avatar='img1.png' />
-					<FeedPost img='img2.png' username='josh' avatar='img2.png' />
-					<FeedPost img='img3.png' username='janedoe' avatar='img3.png' />
-					<FeedPost img='img4.png' username='johndoe' avatar='img4.png' />
+					<Flex
+						flexDir={'column'}
+						justifyContent={'center'}
+						alignItems={'center'}
+					>
+						<Text fontSize={'md'} color={'whiteAlpha.800'}>
+							Dayuum, Looks like you don't have any friends 😢
+						</Text>
+						<Text color={'whiteAlpha.800'}>Stop coding and go make some!</Text>
+					</Flex>
 				</>
 			)}
 		</Container>

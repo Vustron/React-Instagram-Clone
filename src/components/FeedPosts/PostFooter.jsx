@@ -8,9 +8,10 @@ import {
 import usePostComment from '../../hooks/usePostComment';
 import useAuthStore from '../../store/authStore';
 import useLikePost from '../../hooks/useLikePost';
+import { timeConverter } from '../../utils/timeConverter';
 
 // post footer
-const PostFooter = ({ post, username, isProfilePage }) => {
+const PostFooter = ({ post, creatorProfile, isProfilePage }) => {
 	const authUser = useAuthStore((state) => state.user);
 	const { handleLikePost, isLiked, isLiking, likes } = useLikePost(post);
 
@@ -53,20 +54,28 @@ const PostFooter = ({ post, username, isProfilePage }) => {
 				{likes} likes
 			</Text>
 
+			{isProfilePage && (
+				<Text fontSize={12} color={'gray'}>
+					Posted {timeConverter(post.createdAt)}
+				</Text>
+			)}
+
 			{!isProfilePage && (
 				<>
 					{/* user */}
 					<Text fontSize={'sm'} fontWeight={700}>
-						{username}{' '}
+						{creatorProfile?.username}{' '}
 						<Text as={'span'} fontWeight={400}>
-							Feeling Good
+							{post.caption}
 						</Text>
 					</Text>
 
 					{/* view all comments */}
-					<Text fontSize={'sm'} color={'gray'}>
-						View all 1,000 comments
-					</Text>
+					{post.comments.length > 0 && (
+						<Text fontSize={'sm'} color={'gray'} cursor={'pointer'}>
+							View all {post.comments.length} comments
+						</Text>
+					)}
 				</>
 			)}
 
