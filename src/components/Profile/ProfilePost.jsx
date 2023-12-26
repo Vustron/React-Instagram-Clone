@@ -1,6 +1,5 @@
 import {
 	Avatar,
-	Box,
 	Divider,
 	Flex,
 	GridItem,
@@ -9,7 +8,7 @@ import {
 	ModalBody,
 	ModalCloseButton,
 	ModalContent,
-	ModalHeader,
+	Button,
 	ModalOverlay,
 	Text,
 	VStack,
@@ -20,10 +19,15 @@ import { FaComment } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import Comment from '../Comment/Comment';
 import PostFooter from '../FeedPosts/PostFooter';
+import useUserProfileStore from '../../store/userProfileStore';
+import useAuthStore from '../../store/authStore';
 
-const ProfilePost = ({ img }) => {
+const ProfilePost = ({ post }) => {
 	// init modal
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const userProfile = useUserProfileStore((state) => state.userProfile);
+	const authUser = useAuthStore((state) => state.user);
+
 	return (
 		<>
 			<GridItem
@@ -49,36 +53,26 @@ const ProfilePost = ({ img }) => {
 					zIndex={1}
 					justifyContent={'center'}
 				>
-					<Flex
-						alignItems={'center'}
-						justifyContent={'center'}
-						gap={50}
-					>
+					<Flex alignItems={'center'} justifyContent={'center'} gap={50}>
 						{/* likes */}
 						<Flex>
 							<AiFillHeart size={20} />
-							<Text
-								fontWeight={'bold'}
-								ml={2}
-							>
-								7
+							<Text fontWeight={'bold'} ml={2}>
+								{post.likes.length}
 							</Text>
 						</Flex>
 						{/* comments */}
 						<Flex>
 							<FaComment size={20} />
-							<Text
-								fontWeight={'bold'}
-								ml={2}
-							>
-								7
+							<Text fontWeight={'bold'} ml={2}>
+								{post.comments.length}
 							</Text>
 						</Flex>
 					</Flex>
 				</Flex>
 
 				<Image
-					src={img}
+					src={post.imageURL}
 					alt='profile post'
 					w={'100%'}
 					h={'100%'}
@@ -96,72 +90,61 @@ const ProfilePost = ({ img }) => {
 				<ModalOverlay />
 				<ModalContent>
 					<ModalCloseButton />
-					<ModalBody
-						bg={'black'}
-						pb={5}
-					>
+					<ModalBody bg={'black'} pb={5}>
 						<Flex
 							gap={'4'}
 							w={{ base: '90%', sm: '70%', md: 'full' }}
 							mx={'auto'}
+							maxH={'90vh'}
+							minH={'50vh'}
 						>
-							<Box
+							<Flex
 								borderRadius={4}
 								overflow={'hidden'}
 								border={'1px solid'}
 								borderColor={'whiteAlpha.300'}
 								flex={1.5}
+								justifyContent={'center'}
+								alignItems={'center'}
 							>
 								<Image
-									src={img}
+									src={post.imageURL}
 									alt='profile post'
+									// w={'100%'}
+									// h={'100%'}
+									// objectFit={'cover'}
 								/>
-							</Box>
+							</Flex>
 							<Flex
 								flex={1}
 								flexDir={'column'}
 								px={10}
 								display={{ base: 'none', md: 'flex' }}
 							>
-								<Flex
-									alignItems={'center'}
-									justifyContent={'space-between'}
-								>
-									<Flex
-										alignItems={'center'}
-										gap={4}
-									>
-										<Avatar
-											src='/profilepic.png'
-											size={'sm'}
-											name='Vustron Vustronus'
-										/>
-										<Text
-											fontWeight={'bold'}
-											fontSize={12}
-										>
-											vustron_vustronus
+								<Flex alignItems={'center'} justifyContent={'space-between'}>
+									<Flex alignItems={'center'} gap={4}>
+										<Avatar src={userProfile.profilePicURL} size={'sm'} />
+										<Text fontWeight={'bold'} fontSize={12}>
+											{userProfile.username}
 										</Text>
 									</Flex>
 
-									<Box
-										_hover={{
-											bg: 'whiteAlpha.300',
-											color: 'red.600',
-										}}
-										borderRadius={4}
-										p={1}
-									>
-										<MdDelete
-											size={20}
-											cursor={'pointer'}
-										/>
-									</Box>
+									{authUser?.uid === userProfile.uid && (
+										<Button
+											size={'sm'}
+											bg={'transparent'}
+											_hover={{
+												bg: 'whiteAlpha.300',
+												color: 'red.600',
+											}}
+											borderRadius={4}
+											p={1}
+										>
+											<MdDelete size={20} cursor={'pointer'} />
+										</Button>
+									)}
 								</Flex>
-								<Divider
-									my={4}
-									bg={'grey.500'}
-								/>
+								<Divider my={4} bg={'grey.500'} />
 								<VStack
 									w={'full'}
 									alignItems={'start'}
@@ -180,155 +163,8 @@ const ProfilePost = ({ img }) => {
 										profilePic='https://bit.ly/dan-abramov'
 										text='Nice pic'
 									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
-									<Comment
-										createdAt='3h ago'
-										username='kentdodds'
-										profilePic='https://bit.ly/kent-c-dodds'
-										text='Good clone dude'
-									/>
 								</VStack>
-								<Divider
-									my={4}
-									bg={'gray.8000'}
-								/>
+								<Divider my={4} bg={'gray.8000'} />
 								<PostFooter isProfilePage={true} />
 							</Flex>
 						</Flex>
