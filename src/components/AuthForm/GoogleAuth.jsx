@@ -8,14 +8,14 @@ const GoogleAuth = ({ prefix }) => {
 		<>
 			{/* Login with Google */}
 			<Flex
-				alignItems={'center'}
+				alignItems={{ base: 'center' }}
 				justifyContent={'center'}
 				cursor={'pointer'}
 				onClick={handleGoogleAuth}
 			>
 				<Image src='/google.png' w={5} alt='Google logo' />
-				<Text mx='2' color={'blue.500'}>
-					{prefix} in with Google
+				<Text mx='2' color={'blue.500'} fontSize={{ base: 13, md: 14, lg: 14 }}>
+					{prefix} with Google
 				</Text>
 			</Flex>
 		</>

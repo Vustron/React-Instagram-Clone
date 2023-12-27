@@ -26,7 +26,7 @@ const Signup = () => {
 			{/* Input email */}
 			<Input
 				placeholder='Email'
-				fontSize={14}
+				fontSize={{ base: 13, md: 14, lg: 14 }}
 				type='email'
 				value={inputs.email}
 				size={'sm'}
@@ -35,7 +35,7 @@ const Signup = () => {
 			{/* Input username */}
 			<Input
 				placeholder='Username'
-				fontSize={14}
+				fontSize={{ base: 13, md: 14, lg: 14 }}
 				type='text'
 				value={inputs.username}
 				size={'sm'}
@@ -44,7 +44,7 @@ const Signup = () => {
 			{/* Input fullname */}
 			<Input
 				placeholder='Full Name'
-				fontSize={14}
+				fontSize={{ base: 13, md: 14, lg: 14 }}
 				type='text'
 				value={inputs.fullName}
 				size={'sm'}
@@ -55,7 +55,7 @@ const Signup = () => {
 				{/* Input Password */}
 				<Input
 					placeholder='Password'
-					fontSize={14}
+					fontSize={{ base: 13, md: 14, lg: 14 }}
 					type={showPassword ? 'text' : 'password'}
 					value={inputs.password}
 					size={'sm'}
@@ -85,7 +85,7 @@ const Signup = () => {
 				w={'full'}
 				colorScheme='blue'
 				size={'sm'}
-				fontSize={14}
+				fontSize={{ base: 13, md: 14, lg: 14 }}
 				isLoading={loading}
 				onClick={() => signup(inputs)}
 			>

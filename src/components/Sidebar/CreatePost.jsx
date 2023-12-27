@@ -64,6 +64,7 @@ const CreatePost = () => {
 					p={2}
 					w={{ base: 10, md: 'full' }}
 					justifyContent={{ base: 'center', md: 'flex-start' }}
+					ml={{ base: 1, md: 0, lg: 0 }}
 					onClick={onOpen}
 				>
 					<CreatePostLogo />
@@ -72,8 +73,10 @@ const CreatePost = () => {
 			</Tooltip>
 			{/* modal */}
 			<Modal isOpen={isOpen} onClose={onClose} size='xl'>
-				<ModalOverlay />
-
+				<ModalOverlay
+					bg='blackAlpha.300'
+					backdropFilter='blur(10px) hue-rotate(90deg)'
+				/>
 				<ModalContent bg={'black'} border={'1px solid gray'}>
 					<ModalHeader>Create Post</ModalHeader>
 					<ModalCloseButton />

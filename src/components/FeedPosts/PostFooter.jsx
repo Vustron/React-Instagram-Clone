@@ -46,6 +46,7 @@ const PostFooter = ({ post, creatorProfile, isProfilePage }) => {
 					fontSize={18}
 					isLoading={isLiking}
 					bg={'transparent'}
+					size={10}
 				>
 					{!isLiked ? <NotificationsLogo /> : <UnlikeLogo />}
 				</Button>
@@ -56,6 +57,7 @@ const PostFooter = ({ post, creatorProfile, isProfilePage }) => {
 					fontSize={18}
 					onClick={() => commentRef.current.focus()}
 					bg={'transparent'}
+					size={10}
 				>
 					<CommentLogo />
 				</Button>

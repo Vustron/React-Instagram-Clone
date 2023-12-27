@@ -100,9 +100,12 @@ const ProfilePost = ({ post }) => {
 				isOpen={isOpen}
 				onClose={onClose}
 				isCentered={true}
-				size={{ base: '3xl', md: '5xl' }}
+				size={{ base: 'md', md: '5xl' }}
 			>
-				<ModalOverlay />
+				<ModalOverlay
+					bg='blackAlpha.300'
+					backdropFilter='blur(10px) hue-rotate(90deg)'
+				/>
 				<ModalContent>
 					<ModalCloseButton />
 					<ModalBody bg={'black'} pb={5}>
@@ -112,6 +115,7 @@ const ProfilePost = ({ post }) => {
 							mx={'auto'}
 							maxH={'90vh'}
 							minH={'50vh'}
+							flexDir={{ base: 'column', md: 'row' }}
 						>
 							<Flex
 								borderRadius={4}
@@ -134,12 +138,12 @@ const ProfilePost = ({ post }) => {
 								flex={1}
 								flexDir={'column'}
 								px={10}
-								display={{ base: 'none', md: 'flex' }}
+								display={{ base: 'flex', md: 'flex' }}
 							>
 								<Flex alignItems={'center'} justifyContent={'space-between'}>
 									<Flex alignItems={'center'} gap={4}>
 										<Avatar src={userProfile?.profilePicURL} size={'sm'} />
-										<Text fontWeight={'bold'} fontSize={12}>
+										<Text fontWeight={'bold'} fontSize={{ base: 11, md: 12 }}>
 											{userProfile?.username}
 										</Text>
 									</Flex>

@@ -21,6 +21,7 @@ const Home = () => {
 				_hover={{ bg: 'whiteAlpha.400' }}
 				borderRadius={6}
 				p={2}
+				ml={1}
 				w={{ base: 10, md: 'full' }}
 				justifyContent={{ base: 'center', md: 'flex-start' }}
 			>

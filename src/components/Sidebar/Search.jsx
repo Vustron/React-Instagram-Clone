@@ -44,6 +44,7 @@ const Search = () => {
 					_hover={{ bg: 'whiteAlpha.400' }}
 					borderRadius={6}
 					p={2}
+					ml={{ base: 1, md: 0, lg: 0 }}
 					w={{ base: 10, md: 'full' }}
 					justifyContent={{ base: 'center', md: 'flex-start' }}
 					onClick={onOpen}
@@ -55,7 +56,10 @@ const Search = () => {
 
 			{/* modal */}
 			<Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInLeft'>
-				<ModalOverlay />
+				<ModalOverlay
+					bg='blackAlpha.300'
+					backdropFilter='blur(10px) hue-rotate(90deg)'
+				/>
 				<ModalContent bg={'black'} border={'1px solid gray'} maxW={'400px'}>
 					<ModalHeader>Search User</ModalHeader>
 					<ModalCloseButton />

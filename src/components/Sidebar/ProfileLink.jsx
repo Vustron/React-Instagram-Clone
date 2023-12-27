@@ -23,6 +23,7 @@ const ProfileLink = () => {
 				_hover={{ bg: 'whiteAlpha.400' }}
 				borderRadius={6}
 				p={2}
+				ml={{ base: 1, md: 0, lg: 0 }}
 				w={{ base: 10, md: 'full' }}
 				justifyContent={{ base: 'center', md: 'flex-start' }}
 			>

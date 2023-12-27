@@ -32,27 +32,37 @@ const Sidebar = () => {
 					cursor={'pointer'}
 					alignItems={'center'}
 					justifyContent={'center'}
+					ml={{ md: '35px', lg: '35px' }}
 				>
 					<InstagramLogo />
 				</Link>
 				{/* instagram mobile logo */}
-				<Link
-					to={'/'}
-					as={RouterLink}
-					p={2}
+				<Tooltip
+					hasArrow
+					label={'Instagram'}
+					placement='right'
+					ml={1}
+					openDelay={500}
 					display={{ base: 'block', md: 'none' }}
-					cursor={'pointer'}
-					borderRadius={6}
-					_hover={{
-						bg: 'whiteAlpha.200',
-					}}
-					w={10}
-					alignItems={'center'}
-					justifyContent={'center'}
-					m={1}
 				>
-					<InstagramMobileLogo />
-				</Link>
+					<Link
+						to={'/'}
+						as={RouterLink}
+						p={2}
+						display={{ base: 'block', md: 'none' }}
+						cursor={'pointer'}
+						borderRadius={6}
+						_hover={{
+							bg: 'whiteAlpha.200',
+						}}
+						w={10}
+						alignItems={'center'}
+						justifyContent={'center'}
+						ml={{ base: 1, md: 0, lg: 0 }}
+					>
+						<InstagramMobileLogo />
+					</Link>
+				</Tooltip>
 				{/* sidebaritems */}
 				<Flex direction={'column'} gap={5} cursor={'pointer'}>
 					<SidebarItems />
@@ -84,6 +94,7 @@ const Sidebar = () => {
 							variant={'ghost'}
 							_hover={{ bg: 'transparent' }}
 							isLoading={isLoggingOut}
+							ml={{ base: 1, md: 0, lg: 0 }}
 						>
 							Logout
 						</Button>

@@ -13,11 +13,11 @@ const Caption = ({ post }) => {
 			<Flex flexDir={'column'}>
 				<Flex gap={2} alignItems={'center'}>
 					<Link to={`/${userProfile.username}`}>
-						<Text fontWeight={'bold'} fontSize={12}>
+						<Text fontWeight={'bold'} fontSize={{ base: 11, md: 12 }}>
 							{userProfile.username}
 						</Text>
 					</Link>
-					<Text fontSize={14} color={'gray.500'}>
+					<Text fontSize={{ base: 12, md: 14 }} color={'gray.500'}>
 						{post.caption}
 					</Text>
 				</Flex>

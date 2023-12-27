@@ -16,7 +16,7 @@ const Login = () => {
 			{/* Input email */}
 			<Input
 				placeholder='Email'
-				fontSize={14}
+				fontSize={{ base: 13, md: 14, lg: 14 }}
 				type='email'
 				value={inputs.email}
 				size={'sm'}
@@ -25,7 +25,7 @@ const Login = () => {
 			{/* Input Password */}
 			<Input
 				placeholder='Password'
-				fontSize={14}
+				fontSize={{ base: 13, md: 14, lg: 14 }}
 				type='password'
 				value={inputs.password}
 				size={'sm'}
@@ -44,7 +44,7 @@ const Login = () => {
 				w={'full'}
 				colorScheme='blue'
 				size={'sm'}
-				fontSize={14}
+				fontSize={{ base: 13, md: 14, lg: 14 }}
 				isLoading={loading}
 				onClick={() => login(inputs)}
 			>

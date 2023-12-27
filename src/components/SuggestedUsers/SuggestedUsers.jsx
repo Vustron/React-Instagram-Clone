@@ -31,7 +31,7 @@ const SuggestedUsers = () => {
 			))}
 
 			<Box fontSize={12} color={'gray.500'} mt={5} alignSelf={'start'}>
-				© 2023 Built By{' '}
+				© 2023 Made by{' '}
 				<Link
 					href='https://github.com/Vustron'
 					target='_blank'
