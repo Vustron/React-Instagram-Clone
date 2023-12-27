@@ -5,6 +5,7 @@ import {
 	Flex,
 	Skeleton,
 	SkeletonCircle,
+	Text,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import useFollowUser from '../../hooks/useFollowUser';
@@ -37,15 +38,25 @@ const PostHeader = ({ post, creatorProfile }) => {
 					<SkeletonCircle size={10} />
 				)}
 
-				<Flex fontSize={12} fontWeight={'bold'} gap={2}>
+				<Flex fontSize={12} fontWeight={'bold'} gap={'2px'} flexDir={'column'}>
 					{creatorProfile ? (
-						<Link to={`${creatorProfile.username}`}>
-							{creatorProfile.username}
-						</Link>
+						<Flex flexDir={'row'}>
+							<Link to={`${creatorProfile.username}`}>
+								{creatorProfile.username}
+							</Link>
+							<Box color={'gray.500'} ml={'10px'}>
+								• {timeConverter(post.createdAt)}
+							</Box>
+						</Flex>
 					) : (
 						<Skeleton w={'100px'} h={'10px'} />
 					)}
-					<Box color={'gray.500'}>• {timeConverter(post.createdAt)}</Box>
+
+					<Text fontSize={{ base: 12, md: 13, lg: 13 }} fontWeight={700}>
+						<Text as={'span'} fontWeight={400}>
+							{post.caption}
+						</Text>
+					</Text>
 				</Flex>
 			</Flex>
 			<Box cursor={'pointer'}>

@@ -39,7 +39,9 @@ const AuthPage = () => {
 					>
 						{/* Authform inputs with added margin on small screens */}
 						<AuthForm marginLeft={{ base: 'auto', md: '0' }} />
-						<Box textAlign={'center'}>Get the app</Box>
+						<Box textAlign={'center'} fontSize={{ base: 13, md: 13, lg: 13 }}>
+							Get the app
+						</Box>
 						<Flex gap={5} justifyContent={'center'}>
 							<Image src='/playstore.png' h={'10'} alt='Playstore logo' />
 							<Image src='/microsoft.png' h={'10'} alt='Microsoft logo' />

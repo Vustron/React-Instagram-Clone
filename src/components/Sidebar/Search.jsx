@@ -55,14 +55,14 @@ const Search = () => {
 			</Tooltip>
 
 			{/* modal */}
-			<Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInLeft'>
+			<Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInBottom'>
 				<ModalOverlay
 					bg='blackAlpha.300'
 					backdropFilter='blur(10px) hue-rotate(90deg)'
 				/>
 				<ModalContent bg={'black'} border={'1px solid gray'} maxW={'400px'}>
 					<ModalHeader>Search User</ModalHeader>
-					<ModalCloseButton />
+
 					<ModalBody pb={6}>
 						<form onSubmit={handleSearchUser}>
 							<FormControl>

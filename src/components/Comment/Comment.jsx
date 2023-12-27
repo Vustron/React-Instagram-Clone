@@ -8,23 +8,33 @@ const Comment = ({ comment }) => {
 
 	if (isFetching) return <CommentSkeleton />;
 	return (
-		<Flex gap={4}>
+		<Flex gap={4} alignItems='start'>
 			<Link to={`/${userProfile.username}`}>
-				<Avatar src={userProfile.profilePicURL} size={'sm'} />
+				<Avatar src={userProfile.profilePicURL} size='sm' />
 			</Link>
-			<Flex flexDir={'column'}>
-				<Flex gap={2} alignItems={'center'}>
+			<Flex flexDir={'column'} alignItems={'start'}>
+				<Flex flexDir={'row'}>
 					<Link to={`/${userProfile.username}`}>
 						<Text fontWeight={'bold'} fontSize={{ base: 11, md: 12 }}>
 							{userProfile.username}
 						</Text>
 					</Link>
-					<Text fontSize={{ base: 12, md: 14 }} color={'gray.500'}>
-						{comment.comment}
+					<Text
+						fontSize={{ base: 8, md: 10 }}
+						color={'grey'}
+						mt={'3px'}
+						ml={'5px'}
+					>
+						{timeConverter(comment.createdAt)}
 					</Text>
 				</Flex>
-				<Text fontSize={12} color={'gray'}>
-					{timeConverter(comment.createdAt)}
+				<Text
+					fontSize={{ base: 11, md: 12 }}
+					color={'gray.500'}
+					alignSelf={'start'}
+					mt={'3px'}
+				>
+					{comment.comment}
 				</Text>
 			</Flex>
 		</Flex>

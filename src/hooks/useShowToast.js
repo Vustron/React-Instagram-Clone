@@ -9,6 +9,8 @@ const useShowToast = () => {
 		(title, description, status) => {
 			toast({
 				title: title,
+				variant: 'solid',
+				position: 'top',
 				description: description,
 				status: status,
 				duration: 3000,

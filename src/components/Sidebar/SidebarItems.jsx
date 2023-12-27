@@ -1,3 +1,4 @@
+import { Slide } from '@chakra-ui/react';
 import CreatePost from './CreatePost';
 import Home from './Home';
 import Notifications from './Notifications';

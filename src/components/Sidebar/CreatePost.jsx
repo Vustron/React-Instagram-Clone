@@ -72,14 +72,19 @@ const CreatePost = () => {
 				</Flex>
 			</Tooltip>
 			{/* modal */}
-			<Modal isOpen={isOpen} onClose={onClose} size='xl'>
+			<Modal
+				isOpen={isOpen}
+				onClose={onClose}
+				size='xl'
+				motionPreset='slideInBottom'
+			>
 				<ModalOverlay
 					bg='blackAlpha.300'
 					backdropFilter='blur(10px) hue-rotate(90deg)'
 				/>
 				<ModalContent bg={'black'} border={'1px solid gray'}>
 					<ModalHeader>Create Post</ModalHeader>
-					<ModalCloseButton />
+
 					<ModalBody pb={6}>
 						<Textarea
 							placeholder='Post caption...'

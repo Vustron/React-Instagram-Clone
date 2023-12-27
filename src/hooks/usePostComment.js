@@ -13,8 +13,12 @@ const usePostComment = () => {
 
 	const handlePostComment = async (postId, comment) => {
 		if (isCommenting) return;
+
 		if (!authUser)
 			return showToast('Error', 'You must be logged in to comment', 'error');
+
+		if (!comment) return showToast('Error', 'You must type something', 'error');
+
 		setIsCommenting(true);
 
 		const newComment = {

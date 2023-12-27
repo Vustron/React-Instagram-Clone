@@ -48,8 +48,11 @@ const FeedPost = ({ post }) => {
 					backdropFilter='blur(10px) hue-rotate(90deg)'
 				/>
 
-				<ModalContent>
-					<ModalCloseButton mr={{ base: '-5px', md: '-15px' }} />
+				<ModalContent
+					bg={'black'}
+					border={'1px solid gray'}
+					borderRadius={'1px'}
+				>
 					<ModalBody bg={'black'} pb={5}>
 						<Flex
 							gap={'4'}
@@ -70,9 +73,9 @@ const FeedPost = ({ post }) => {
 								<Image
 									src={post.imageURL}
 									alt='profile post'
-									// w={'100%'}
-									// h={'100%'}
-									// objectFit={'cover'}
+									w={'100%'}
+									h={'100%'}
+									objectFit={'cover'}
 								/>
 							</Flex>
 						</Flex>

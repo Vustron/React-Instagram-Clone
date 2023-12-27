@@ -10,19 +10,24 @@ const Caption = ({ post }) => {
 			<Link to={`/${userProfile.username}`}>
 				<Avatar src={userProfile.profilePicURL} size={'sm'} />
 			</Link>
-			<Flex flexDir={'column'}>
-				<Flex gap={2} alignItems={'center'}>
+			<Flex flexDir={'column'} alignItems={'start'}>
+				<Flex flexDir={'row'} alignItems={'row'}>
 					<Link to={`/${userProfile.username}`}>
 						<Text fontWeight={'bold'} fontSize={{ base: 11, md: 12 }}>
 							{userProfile.username}
 						</Text>
 					</Link>
-					<Text fontSize={{ base: 12, md: 14 }} color={'gray.500'}>
-						{post.caption}
+					<Text fontSize={{ base: 8, md: 10 }} color={'gray'} ml={2} mt={'1px'}>
+						{timeConverter(post.createdAt)}
 					</Text>
 				</Flex>
-				<Text fontSize={12} color={'gray'}>
-					{timeConverter(post.createdAt)}
+
+				<Text
+					fontSize={{ base: 11, md: 12 }}
+					color={'gray.500'}
+					alignSelf={'start'}
+				>
+					{post.caption}
 				</Text>
 			</Flex>
 		</Flex>

@@ -100,14 +100,19 @@ const ProfilePost = ({ post }) => {
 				isOpen={isOpen}
 				onClose={onClose}
 				isCentered={true}
-				size={{ base: 'md', md: '5xl' }}
+				size={{ base: 'md', md: '3xl' }}
+				motionPreset='slideInBottom'
 			>
 				<ModalOverlay
 					bg='blackAlpha.300'
 					backdropFilter='blur(10px) hue-rotate(90deg)'
 				/>
-				<ModalContent>
-					<ModalCloseButton />
+				<ModalContent
+					bg={'black'}
+					boxShadow={'xl'}
+					border={'1px solid gray'}
+					borderRadius={'1px'}
+				>
 					<ModalBody bg={'black'} pb={5}>
 						<Flex
 							gap={'4'}
@@ -120,8 +125,6 @@ const ProfilePost = ({ post }) => {
 							<Flex
 								borderRadius={4}
 								overflow={'hidden'}
-								border={'1px solid'}
-								borderColor={'whiteAlpha.300'}
 								flex={1.5}
 								justifyContent={'center'}
 								alignItems={'center'}
@@ -129,6 +132,7 @@ const ProfilePost = ({ post }) => {
 								<Image
 									src={post.imageURL}
 									alt='profile post'
+
 									// w={'100%'}
 									// h={'100%'}
 									// objectFit={'cover'}
@@ -139,14 +143,21 @@ const ProfilePost = ({ post }) => {
 								flexDir={'column'}
 								px={10}
 								display={{ base: 'flex', md: 'flex' }}
+								mt={{ base: '0', md: '20px', lg: '20px' }}
 							>
-								<Flex alignItems={'center'} justifyContent={'space-between'}>
-									<Flex alignItems={'center'} gap={4}>
+								<Flex
+									alignItems={'center'}
+									justifyContent={'space-between'}
+									mt={{ base: '0', md: '20px', lg: '20px' }}
+								>
+									{/* <Flex alignItems={'center'} gap={4}>
 										<Avatar src={userProfile?.profilePicURL} size={'sm'} />
 										<Text fontWeight={'bold'} fontSize={{ base: 11, md: 12 }}>
 											{userProfile?.username}
 										</Text>
-									</Flex>
+									</Flex> */}
+									{/* captions */}
+									{post.caption && <Caption post={post} />}
 
 									{authUser?.uid === userProfile?.uid && (
 										<Button
@@ -173,15 +184,13 @@ const ProfilePost = ({ post }) => {
 									maxH={'350px'}
 									overflowY={'auto'}
 								>
-									{/* captions */}
-									{post.caption && <Caption post={post} />}
 									{/* comments */}
 									{post.comments.map((comment, index) => (
 										<Comment key={index} comment={comment} />
 									))}
 								</VStack>
 
-								<Divider my={4} bg={'gray.8000'} />
+								<Divider my={4} bg={'gray.8000'} mt={'50px'} />
 								<PostFooter isProfilePage={true} post={post} />
 							</Flex>
 						</Flex>

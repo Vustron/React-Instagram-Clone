@@ -37,11 +37,13 @@ const ViewComments = ({ isOpen, onClose, post }) => {
 	}, [isOpen, post.comments.length]);
 
 	return (
-		<Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInLeft'>
-			<ModalOverlay />
+		<Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInBottom'>
+			<ModalOverlay
+				bg='blackAlpha.300'
+				backdropFilter='blur(10px) hue-rotate(90deg)'
+			/>
 			<ModalContent bg={'black'} border={'1px solid gray'} maxW={'400px'}>
 				<ModalHeader>Comments</ModalHeader>
-				<ModalCloseButton />
 				<ModalBody pb={6}>
 					<Flex
 						mb={4}

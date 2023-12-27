@@ -76,14 +76,6 @@ const PostFooter = ({ post, creatorProfile, isProfilePage }) => {
 
 			{!isProfilePage && (
 				<>
-					{/* user */}
-					<Text fontSize={'sm'} fontWeight={700}>
-						{creatorProfile?.username}{' '}
-						<Text as={'span'} fontWeight={400}>
-							{post.caption}
-						</Text>
-					</Text>
-
 					{/* view all comments */}
 					{post.comments.length > 0 && (
 						<Text

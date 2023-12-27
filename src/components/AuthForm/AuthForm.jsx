@@ -43,14 +43,14 @@ const AuthForm = () => {
 
 			<Box border={'1px solid gray'} borderRadius={4} padding={5}>
 				<Flex alignItems={'center'} justifyContent={'center'}>
-					<Box mx={2} fontSize={{ base: 12, md: 14, lg: 14 }}>
+					<Box mx={2} fontSize={{ base: 12, md: 13, lg: 13 }}>
 						{isLogin ? "Don't have an account?" : 'Already have an account?'}
 					</Box>
 					<Box
 						onClick={() => setIsLogin(!isLogin)}
 						color={'blue.500'}
 						cursor={'pointer'}
-						fontSize={{ base: 13, md: 14, lg: 14 }}
+						fontSize={{ base: 13, md: 13, lg: 13 }}
 					>
 						{isLogin ? 'Sign up' : 'Log in'}
 					</Box>
