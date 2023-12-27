@@ -138,13 +138,13 @@ const ProfilePost = ({ post }) => {
 							>
 								<Flex alignItems={'center'} justifyContent={'space-between'}>
 									<Flex alignItems={'center'} gap={4}>
-										<Avatar src={userProfile.profilePicURL} size={'sm'} />
+										<Avatar src={userProfile?.profilePicURL} size={'sm'} />
 										<Text fontWeight={'bold'} fontSize={12}>
-											{userProfile.username}
+											{userProfile?.username}
 										</Text>
 									</Flex>
 
-									{authUser?.uid === userProfile.uid && (
+									{authUser?.uid === userProfile?.uid && (
 										<Button
 											size={'sm'}
 											bg={'transparent'}
@@ -172,8 +172,8 @@ const ProfilePost = ({ post }) => {
 									{/* captions */}
 									{post.caption && <Caption post={post} />}
 									{/* comments */}
-									{post.comments.map((comment) => (
-										<Comment key={comment.id} comment={comment} />
+									{post.comments.map((comment, index) => (
+										<Comment key={index} comment={comment} />
 									))}
 								</VStack>
 

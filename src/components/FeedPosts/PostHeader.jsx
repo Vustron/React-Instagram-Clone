@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import useFollowUser from '../../hooks/useFollowUser';
+import { timeConverter } from '../../utils/timeConverter';
 
 // post header
 const PostHeader = ({ post, creatorProfile }) => {
@@ -44,7 +45,7 @@ const PostHeader = ({ post, creatorProfile }) => {
 					) : (
 						<Skeleton w={'100px'} h={'10px'} />
 					)}
-					<Box color={'gray.500'}>• 1w</Box>
+					<Box color={'gray.500'}>• {timeConverter(post.createdAt)}</Box>
 				</Flex>
 			</Flex>
 			<Box cursor={'pointer'}>
