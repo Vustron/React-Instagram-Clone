@@ -112,6 +112,7 @@ const ProfilePost = ({ post }) => {
 					boxShadow={'xl'}
 					border={'1px solid gray'}
 					borderRadius={'1px'}
+					overflowY='auto'
 				>
 					<ModalBody bg={'black'} pb={5}>
 						<Flex
@@ -124,19 +125,11 @@ const ProfilePost = ({ post }) => {
 						>
 							<Flex
 								borderRadius={4}
-								overflow={'hidden'}
 								flex={1.5}
 								justifyContent={'center'}
 								alignItems={'center'}
 							>
-								<Image
-									src={post.imageURL}
-									alt='profile post'
-
-									// w={'100%'}
-									// h={'100%'}
-									// objectFit={'cover'}
-								/>
+								<Image src={post.imageURL} alt='profile post' />
 							</Flex>
 							<Flex
 								flex={1}

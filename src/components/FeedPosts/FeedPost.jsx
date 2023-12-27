@@ -42,6 +42,7 @@ const FeedPost = ({ post }) => {
 				onClose={onClose}
 				isCentered={true}
 				size={{ base: 'sm', md: 'md' }}
+				motionPreset='slideInBottom'
 			>
 				<ModalOverlay
 					bg='blackAlpha.300'
@@ -52,6 +53,7 @@ const FeedPost = ({ post }) => {
 					bg={'black'}
 					border={'1px solid gray'}
 					borderRadius={'1px'}
+					overflowY='auto'
 				>
 					<ModalBody bg={'black'} pb={5}>
 						<Flex
@@ -70,13 +72,7 @@ const FeedPost = ({ post }) => {
 								justifyContent={'center'}
 								alignItems={'center'}
 							>
-								<Image
-									src={post.imageURL}
-									alt='profile post'
-									w={'100%'}
-									h={'100%'}
-									objectFit={'cover'}
-								/>
+								<Image src={post.imageURL} alt='profile post' />
 							</Flex>
 						</Flex>
 					</ModalBody>

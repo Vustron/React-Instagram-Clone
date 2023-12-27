@@ -46,7 +46,6 @@ const FeedPosts = () => {
 						<Text fontSize={'md'} color={'whiteAlpha.800'}>
 							Dayuum, Looks like you don't have any friends 😢
 						</Text>
-						<Text color={'whiteAlpha.800'}>Stop coding and go make some!</Text>
 					</Flex>
 				</>
 			)}
